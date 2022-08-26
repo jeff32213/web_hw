@@ -157,22 +157,26 @@ $(document).ready(function(e) {
         });
         
     });
-/*
-    var $old_fname;
-    $("#btn_edit").click(function() {
 
-        $old_fname = $(this).val();
-        alert('$old_fname');
-          
+    var $tmp;
+
+
+    $('table tbody').on('click', '#btn_edit', function() {
+
+        $tmp = $(this).closest('tr').find('#fname').text()
+        //alert($tmp)
+
     });
-*/
 
     $("#btn_rename").click(function() {
+        
+        var $a =$(this).closest('tr').find('#fname').text() ;
+
         $.ajax({
             type: "POST",
             url: "rename_file.php",
             data: {
-                old_fname: $("#btn_edit").val(),
+                old_fname: $tmp,
                 new_fname: $("#new_fname").val()
                 
             },
@@ -187,9 +191,6 @@ $(document).ready(function(e) {
             }
         })
     });
-
-
-
 
 
     $('table tbody').on('click', '#delete', function() {
@@ -217,6 +218,9 @@ $(document).ready(function(e) {
         });
 
     });
+
+
+
 
 
 
